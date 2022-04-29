@@ -16,10 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.template.defaulttags import url
 from django.urls import path
+from django.http import HttpResponse
+from django.shortcuts import render
 from . import views
 from faq import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.faq),
+    path('faq/', views.faq),
 ]
