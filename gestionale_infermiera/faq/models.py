@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Faq(models.Model):
+    domanda = models.CharField(max_length=15)
+    risposta = models.CharField(max_length=15)
