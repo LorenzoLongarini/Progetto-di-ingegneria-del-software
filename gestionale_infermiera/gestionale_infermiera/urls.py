@@ -18,11 +18,12 @@ from django.template.defaulttags import url
 from django.urls import path
 from django.http import HttpResponse
 from django.shortcuts import render
-from . import views
+from . import views as v
 from faq import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('faq/', views.faq),
+    path('', v.ControllerHome.home),
+    path('faq/', views.ControllerFaq.faq),
 ]
