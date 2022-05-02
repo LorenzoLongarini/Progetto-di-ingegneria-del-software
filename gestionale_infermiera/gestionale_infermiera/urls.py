@@ -24,6 +24,7 @@ from faq import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', v.ControllerHome.home),
+    path('', v.ControllerHome.home, name='home'),
+    path('about/', v.ControllerHome.about, name='about'),
     path('faq/', views.ControllerFaq.faq),
 ]

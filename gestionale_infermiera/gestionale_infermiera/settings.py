@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'faq.apps.FaqConfig',
+    'prenotazione.apps.PrenotazioneConfig',
 ]
 
 MIDDLEWARE = [
