@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from gestionale_infermiera.prodotto.models import Prodotto
+
+#admin.site.register(Prodotto)

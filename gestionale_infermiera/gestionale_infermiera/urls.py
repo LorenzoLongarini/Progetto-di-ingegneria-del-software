@@ -27,4 +27,5 @@ urlpatterns = [
     path('', v.ControllerHome.home, name='home'),
     path('about/', v.ControllerHome.about, name='about'),
     path('faq/', views.ControllerFaq.faq),
+    path('<int:id>/generatePDF/', views.generatePDF, name='generatePDF'),
 ]
