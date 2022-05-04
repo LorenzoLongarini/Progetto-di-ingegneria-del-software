@@ -9,7 +9,6 @@ class ControllerFattura():
     def fattura(request):
         return render(request, 'fattura/fattura.html')
 
-    @staff_member_required
     def generatePDF(request, id):
         buffer = io.BytesIO()
         x = canvas.Canvas(buffer)

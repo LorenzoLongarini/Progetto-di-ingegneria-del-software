@@ -1,3 +1,4 @@
+from urllib import request
 from django.shortcuts import render
 # Create your views here.
 
@@ -8,3 +9,6 @@ class ControllerHome():
 
     def about(request):
         return render(request, 'gestionale_infermiera/about.html' )
+
+    def help(request):
+        return render(request, 'gestionale_infermiera/about.html')
