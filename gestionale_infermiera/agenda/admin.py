@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
- 
+from calendar import HTMLCalendar
 from django.contrib import admin
-from models import Appuntamento
+from .models import Appuntamento
 import datetime
 import calendar
 from django.urls import reverse
-from utils import EventCalendar
+from .utils import EventCalendar
 from django.utils.safestring import mark_safe
  
 class AgendaAdmin(admin.ModelAdmin):
-    list_display = ['giorno', 'orario_inizio', 'orario_fine', 'note']
-    change_list_template = 'admin/events/change_list.html'
+    list_display = ['nome','data', 'orario_inizio', 'orario_fine', 'note']
+    change_list_template = 'admin/agenda/change_list.html'
 
     def change_agendaView(self, request, extra_context=None):
         after_day = request.GET.get('day__gte', None)
