@@ -6,9 +6,6 @@ from reportlab.pdfgen import canvas
 
 class ControllerFattura():
 
-    def fattura(request):
-        return render(request, 'fattura/fattura.html')
-
     def generatePDF(request, id):
         buffer = io.BytesIO()
         x = canvas.Canvas(buffer)

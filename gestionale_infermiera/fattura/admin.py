@@ -1,12 +1,18 @@
 from django.contrib import admin
 from .models import Fattura
 
-class FatturAdmin(admin.ModelAdmin):
+class FatturaInline(admin.TabularInline):
+    model = Fattura
+
+class FatturaAdmin(admin.ModelAdmin):
+    inlines = [
+        FatturaInline,
+    ]
     @admin.action(description='Genera file PDF')
-    def generatePDF(modeladmin, request, queryset):
+    def generatePDFchoice(modeladmin, request, queryset):
         url ='templates/admin/fattura/?pks=' + ','.join(str([q.pk for q in queryset]))
        
-    actions = [generatePDF]
+    actions = [generatePDFchoice]
 
-admin.site.register(Fattura)
+admin.site.register(FatturaInline)
 

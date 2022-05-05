@@ -19,7 +19,7 @@ from django.urls import path
 from django.http import HttpResponse
 from django.shortcuts import render
 from . import views as v
-from faq import views
+from faq import views as vf
 from fattura import views
 
 
@@ -27,6 +27,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', v.ControllerHome.home, name='home'),
     path('about/', v.ControllerHome.about, name='about'),
-    path('faq/', views.ControllerFaq.faq),
+    path('faq/', vf.ControllerFaq.faq),
     #path('<int:id>/generatePDF/', views.ControllerFattura.generatePDF, name='generatePDF'),
 ]

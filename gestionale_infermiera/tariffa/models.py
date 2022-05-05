@@ -13,7 +13,7 @@ class Tariffa(models.Model):
 
     nome = models.CharField(max_length=10)
     descrizione = models.TextField(max_length=30, default=None, blank=True, null=True)
-    prezzo = models.FloatField(max_length=3, validators=[validate_price])
+    prezzo = models.FloatField(max_length=6, validators=[validate_price])
 
     def __str__(self):
         return self.nome

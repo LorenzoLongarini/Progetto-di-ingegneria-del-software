@@ -6,11 +6,12 @@ from models import Appuntamento
 import datetime
 import calendar
 from django.urls import reverse
-from calendar import HTMLCalendar
+from utils import EventCalendar
 from django.utils.safestring import mark_safe
  
 class AgendaAdmin(admin.ModelAdmin):
     list_display = ['giorno', 'orario_inizio', 'orario_fine', 'note']
+    change_list_template = 'admin/events/change_list.html'
 
     def change_agendaView(self, request, extra_context=None):
         after_day = request.GET.get('day__gte', None)
@@ -40,7 +41,7 @@ class AgendaAdmin(admin.ModelAdmin):
             previous_month)
         extra_context['next_month'] = reverse('admin:events_event_changelist') + '?day__gte=' + str(next_month)
  
-        cal = HTMLCalendar()
+        cal = EventCalendar()
         html_calendar = cal.formatmonth(d.year, d.month, withyear=True)
         html_calendar = html_calendar.replace('<td ', '<td  width="150" height="150"')
         extra_context['calendar'] = mark_safe(html_calendar)
