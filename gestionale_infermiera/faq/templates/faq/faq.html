@@ -1,14 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    {% include "gestionale_infermiera/head.html" %}
     {% load static %}
-    <link rel="stylesheet" href="{% static  'css/style.css' %}">
-</head>
+
 <body>
-    <h2 class ="ok"> ciaone </h2>
+    {% include "gestionale_infermiera/header.html" %}
+
+    {% include "gestionale_infermiera/navbar.html" %}
+    <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
+        <div class="container py-5">
+            <div class="row align-items-center py-4">
+                <div class="col-md-6 text-center text-md-left">
+                    <h1 class="mb-4 mb-md-0 text-white">FAQ</h1>
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="btn text-white" href="">Home</a>
+                        <i class="fas fa-angle-right text-white"></i>
+                        <a class="btn text-white disabled" href="">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="container">
+    <br />
+    <br />
+    <br />
+
+    <!--<div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        This section contains a wealth of information, related to <strong>PrepBootstrap</strong> and its store. If you cannot find an answer to your question, 
+        make sure to contact us. 
+    </div>-->
+
+    <br />
+
+    <div class="panel-group" id="accordion">
+        <div class="faqHeader">General questions</div>
+         <!--{% for faq in faqs %}-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                        <!--{{faq.domanda}-->
+                    a</a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in">
+                <div class="panel-body">b
+                    <!--{{faq.risposta}} -->
+                </div>
+            </div>
+        </div>
+         <!--{% endfor %}-->
+    </div>
+</div>
+
+{% include "gestionale_infermiera/footer.html" %}
+    
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>s
 </body>
+
 </html>

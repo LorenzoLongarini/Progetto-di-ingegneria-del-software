@@ -10,10 +10,10 @@ from .utils import EventCalendar
 from django.utils.safestring import mark_safe
  
 class AgendaAdmin(admin.ModelAdmin):
-    list_display = ['nome','data', 'orario_inizio', 'orario_fine', 'note']
+    list_display = ['nome','day', 'orario_inizio', 'orario_fine', 'note']
     change_list_template = 'admin/agenda/change_list.html'
 
-    def change_agendaView(self, request, extra_context=None):
+    def changelist_view(self, request, extra_context=None):
         after_day = request.GET.get('day__gte', None)
         extra_context = extra_context or {}
  
@@ -37,14 +37,14 @@ class AgendaAdmin(admin.ModelAdmin):
         next_month = datetime.date(year=next_month.year, month=next_month.month,
                                    day=1)  # find first day of next month
  
-        extra_context['previous_month'] = reverse('admin:events_event_changelist') + '?day__gte=' + str(
+        extra_context['previous_month'] = reverse('admin:agenda_appuntamento_changelist') + '?day__gte=' + str(
             previous_month)
-        extra_context['next_month'] = reverse('admin:events_event_changelist') + '?day__gte=' + str(next_month)
+        extra_context['next_month'] = reverse('admin:agenda_appuntamento_changelist') + '?day__gte=' + str(next_month)
  
         cal = EventCalendar()
         html_calendar = cal.formatmonth(d.year, d.month, withyear=True)
         html_calendar = html_calendar.replace('<td ', '<td  width="150" height="150"')
         extra_context['calendar'] = mark_safe(html_calendar)
-        return super(AgendaAdmin, self).change_agendaView(request, extra_context)
+        return super(AgendaAdmin, self).changelist_view(request, extra_context)
  
 admin.site.register(Appuntamento, AgendaAdmin)

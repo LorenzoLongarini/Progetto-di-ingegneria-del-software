@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
-from gestionale_infermiera.prenotazione.form import Prenotazione
+from .form import Prenotazione
 # Create your views here.
 
 class ControllerPrenotazione():
@@ -11,12 +11,21 @@ class ControllerPrenotazione():
         if request.method == 'POST':
             form = Prenotazione(request.POST)
             if form.is_valid():
-                subject = "Website Inquiry" 
+                subject = "Prenotazione Appuntamento" 
                 body = {
-                'first_name': form.cleaned_data['first_name'], 
-                'last_name': form.cleaned_data['last_name'], 
-                'email': form.cleaned_data['email_address'], 
-                'message':form.cleaned_data['message'], 
+                'nome': form.cleaned_data['nome'], 
+                'cognome': form.cleaned_data['cognome'], 
+                'email': form.cleaned_data['email'], 
+                'citta': form.cleaned_data['citta'], 
+                'via': form.cleaned_data['via'], 
+                'num_civico': form.cleaned_data['num_civico'], 
+                'cap': form.cleaned_data['cap'], 
+                'cod_fiscale': form.cleaned_data['cod_fiscale'], 
+                'materiale': form.cleaned_data['materiale'], 
+                'prescrizione': form.cleaned_data['prescrizione'], 
+                'orario': form.cleaned_data['orario'], 
+                'data': form.cleaned_data['data'], 
+                'richiesta':form.cleaned_data['richiesta'], 
                 }
                 message = "\n".join(body.values())
 
@@ -26,4 +35,5 @@ class ControllerPrenotazione():
                     return HttpResponse('Invalid header found.')
                 return redirect ("main:homepage")
         form = Prenotazione()
-        return render(request, "main/contact.html", {'form':form})
+        return render(request, "prenotazione/contact.hmtl", {'form':form})
+
