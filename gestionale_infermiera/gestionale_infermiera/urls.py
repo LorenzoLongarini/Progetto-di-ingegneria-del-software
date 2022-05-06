@@ -28,7 +28,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', v.ControllerHome.home, name='home'),
     path('about/', v.ControllerHome.about, name='about'),
-    path('contact/', vp.ControllerPrenotazione.contact, name='contact'),
+    path('contact/', vp.ControllerPrenotazione.prenotazione, name='contact'),
     path('faq/', vf.ControllerFaq.faq, name = 'faq'),
     #path('<int:id>/generatePDF/', views.ControllerFattura.generatePDF, name='generatePDF'),
 ]

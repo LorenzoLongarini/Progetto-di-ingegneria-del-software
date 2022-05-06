@@ -22,7 +22,7 @@ def validate_length5(value):
             _('Non è possibile inserire più di 5 caratteri')
         )
 
-class Prenotazione():
+class Prenotazione(forms.Form):
 
     def clean_data(value):
         if value < datetime.date.today():
@@ -36,7 +36,7 @@ class Prenotazione():
     num_civico = forms.IntegerField(validators=[validate_length3])
     cap = forms.IntegerField(validators=[validate_length5])
     cod_fiscale = forms.CharField(max_length=16)
-    richiesta = forms.TextField(widget = forms.Textarea, max_length = 2000)
+    richiesta = forms.CharField(widget = forms.Textarea, max_length = 2000)
     materiale = forms.BooleanField
     prescrizione = forms.BooleanField
     orario = forms.TimeField()

@@ -33,7 +33,7 @@ class ControllerPrenotazione():
                     send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')
-                return redirect ("main:homepage")
+                return redirect ("home")
         form = Prenotazione()
-        return render(request, "prenotazione/contact.hmtl", {'form':form})
+        return render(request, "prenotazione/prenotazione.html", {'form':form})
 

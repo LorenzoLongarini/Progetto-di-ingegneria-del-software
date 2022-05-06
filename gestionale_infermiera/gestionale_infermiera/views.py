@@ -13,5 +13,3 @@ class ControllerHome():
     def help(request):
         return render(request, 'gestionale_infermiera/about.html')
 
-    def contact(request):
-        return render(request, 'gestionale_infermiera/contact.html')
