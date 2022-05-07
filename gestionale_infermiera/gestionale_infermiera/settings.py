@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'faq.apps.FaqConfig',
     'agenda.apps.AgendaConfig',
-    'prenotazione.apps.PrenotazioneConfig'
+    'prenotazione.apps.PrenotazioneConfig',
+    'prodotto.apps.ProdottoConfig'
 ]
 
 MIDDLEWARE = [
@@ -106,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'it-it'
 
 TIME_ZONE = 'UTC'
 
@@ -129,4 +130,10 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '<your_email>'
+EMAIL_HOST_PASSWORD = 'your_password>'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

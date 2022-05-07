@@ -7,6 +7,7 @@ from django.core.exceptions import ValidationError
 from django.urls import reverse
  
 class Appuntamento(models.Model):
+    id = models.BigAutoField(primary_key=True)
     nome = models.CharField(u'Nome appuntamento', help_text=u'Nome appuntamento', blank=True, null=True, max_length=20)
     day = models.DateField(u'Data evento', help_text=u'Giorno evento')
     orario_inizio = models.TimeField(u'Orario di inizio', help_text=u'Orario di inizio')
@@ -17,15 +18,16 @@ class Appuntamento(models.Model):
         verbose_name = u'Appuntamento'
         verbose_name_plural = u'Appuntamenti'
 
-    def check_overlap(self, fixed_start, fixed_end, new_start, new_end):
+    def check_overlap(self, fixed_start, fixed_end, new_start, new_end, cod):
             overlap = False
-            if new_start == fixed_end or new_end == fixed_start:    #edge case
-                overlap = False
-            elif (new_start >= fixed_start and new_start <= fixed_end) or (new_end >= fixed_start and new_end <= fixed_end): #innner limits
-                overlap = True
-            elif new_start <= fixed_start and new_end >= fixed_end: #outter limits
-                overlap = True
- 
+            if self.pk != cod:
+                if new_start == fixed_end or new_end == fixed_start:    #edge case
+                    overlap = False
+                elif (new_start >= fixed_start and new_start <= fixed_end) or (new_end >= fixed_start and new_end <= fixed_end): #innner limits
+                    overlap = True
+                elif new_start <= fixed_start and new_end >= fixed_end: #outter limits
+                    overlap = True
+
             return overlap
  
     def get_absolute_url(self):
@@ -39,7 +41,7 @@ class Appuntamento(models.Model):
         events = Appuntamento.objects.filter(day=self.day)
         if events.exists():
             for event in events:
-                if self.check_overlap(event.orario_inizio, event.orario_fine, self.orario_inizio, self.orario_fine):
+                if self.check_overlap(event.orario_inizio, event.orario_fine, self.orario_inizio, self.orario_fine, event.pk):
                     raise ValidationError(
                         'É presente una sovrapposizione tra eventi: ' + str(event.day) + ', ' + str(
                             event.orario_inizio) + '-' + str(event.orario_fine))

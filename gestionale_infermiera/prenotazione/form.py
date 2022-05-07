@@ -1,6 +1,6 @@
 from django import forms
 
-from datetime import datetime
+from datetime import datetime, date
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
@@ -22,12 +22,12 @@ def validate_length5(value):
             _('Non è possibile inserire più di 5 caratteri')
         )
 
-class Prenotazione(forms.Form):
-
-    def clean_data(value):
-        if value < datetime.date.today():
+def clean_data(value):
+        if value < date.today():
             raise forms.ValidationError("The date cannot be in the past!")
         return value
+
+class Prenotazione(forms.Form):
 
     nome = forms.CharField(max_length=20)
     cognome = forms.CharField(max_length=20)
@@ -36,9 +36,9 @@ class Prenotazione(forms.Form):
     num_civico = forms.IntegerField(validators=[validate_length3])
     cap = forms.IntegerField(validators=[validate_length5])
     cod_fiscale = forms.CharField(max_length=16)
-    richiesta = forms.CharField(widget = forms.Textarea, max_length = 2000)
-    materiale = forms.BooleanField
-    prescrizione = forms.BooleanField
+    message = forms.CharField(widget = forms.Textarea, max_length = 2000, label='Richiesta')
+    materiale = forms.BooleanField(required=False, widget=forms.CheckboxInput)
+    prescrizione = forms.BooleanField(required=False, widget=forms.CheckboxInput)
     orario = forms.TimeField()
     data = forms.DateField(validators=[clean_data])
     email = forms.EmailField()

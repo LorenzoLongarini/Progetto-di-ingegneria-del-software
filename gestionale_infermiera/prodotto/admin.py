@@ -1,9 +1,21 @@
 from django.contrib import admin
+from django.shortcuts import render
 
-from gestionale_infermiera.prodotto.models import Prodotto
+from .models import Prodotto
 
 
-#class FatturAdmin(admin.ModelAdmin):
-#def changeprodotto_view(self, request, extra_context=None):
-#change_list_template = 'admin/events/change_list.html'
-#admin.site.register(Prodotto)
+class ProdottoAdmin(admin.ModelAdmin):
+    list_display = ['nome','marca', 'prezzo', 'descrizione']
+    change_list_template = 'admin/prodotto/change_list.html'
+
+    def changelist_view(self, request):
+
+        prodotti = Prodotto.objects.all()
+
+        return super(ProdottoAdmin, self).changelist_view(request, {'prodotti' : prodotti})
+        
+    #def prodotto(request):
+       # prodotti = Prodotto.objects.all()
+        #return render(request, 'faq/faq.html',{'prodotti' : prodotti})
+
+admin.site.register(Prodotto, ProdottoAdmin)

@@ -25,12 +25,12 @@ class ControllerPrenotazione():
                 'prescrizione': form.cleaned_data['prescrizione'], 
                 'orario': form.cleaned_data['orario'], 
                 'data': form.cleaned_data['data'], 
-                'richiesta':form.cleaned_data['richiesta'], 
+                'message':form.cleaned_data['message'], 
                 }
-                message = "\n".join(body.values())
+                message = "\n".join(body.values().__str__)
 
                 try:
-                    send_mail(subject, message, 'admin@example.com', ['admin@example.com']) 
+                    send_mail(subject, message, 'lollo.longarini@gmail.com', ['lollo.longarini@gmail.com']) 
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')
                 return redirect ("home")
