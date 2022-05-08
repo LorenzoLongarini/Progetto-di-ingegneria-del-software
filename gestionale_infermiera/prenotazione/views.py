@@ -1,8 +1,10 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse
 from .form import Prenotazione
 from django.contrib import messages
+from gestionale_infermiera.settings import EMAIL_HOST_USER 
 # Create your views here.
 
 class ControllerPrenotazione():
@@ -35,7 +37,7 @@ class ControllerPrenotazione():
                 
 
                 try:
-                    send_mail(subject, message, body['email'], ['luana.bibini@gmail.com']) 
+                    send_mail(subject, message, body['email'], [EMAIL_HOST_USER]) 
                     messages.success(request,'Email inviata con successo')
                 except BadHeaderError:
                     return HttpResponse('Invalid header found.')
