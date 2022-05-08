@@ -7,8 +7,13 @@
     {% include "gestionale_infermiera/header.html" %}
 
     {% include "gestionale_infermiera/navbar.html" %}
-
-    <!-- Page Header Start -->
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }} m-2" id="msg" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %} 
     <div class="page-header container-fluid bg-secondary pt-2 pt-lg-5 pb-2 mb-5">
         <div class="container py-5">
             <div class="row align-items-center py-4">
@@ -78,5 +83,13 @@
 
     {% include "gestionale_infermiera/footer.html" %}
 </body>
+
+<script>
+    setTimeout(function(){
+      if ($('#msg').length > 0) {
+        $('#msg').remove();
+      }
+    }, 2000)
+  </script> 
 
 </html>

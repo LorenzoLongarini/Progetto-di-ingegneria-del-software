@@ -30,5 +30,5 @@ urlpatterns = [
     path('about/', v.ControllerHome.about, name='about'),
     path('contact/', vp.ControllerPrenotazione.prenotazione, name='contact'),
     path('faq/', vf.ControllerFaq.faq, name = 'faq'),
-    #path('<int:id>/generatePDF/', views.ControllerFattura.generatePDF, name='generatePDF'),
+    path('<int:id>/generatePDF/', views.ControllerFattura.generatePDF, name='generatePDF'),
 ]

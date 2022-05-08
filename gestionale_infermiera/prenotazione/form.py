@@ -1,3 +1,4 @@
+from typing import Text
 from django import forms
 
 from datetime import datetime, date
@@ -33,7 +34,7 @@ class Prenotazione(forms.Form):
     cognome = forms.CharField(max_length=20)
     citta = forms.CharField(max_length=15)
     via = forms.CharField(max_length=25)
-    num_civico = forms.IntegerField(validators=[validate_length3])
+    num_civico = forms.CharField(widget=forms.NumberInput(attrs={'type':'number'}), validators=[validate_length3])
     cap = forms.IntegerField(validators=[validate_length5])
     cod_fiscale = forms.CharField(max_length=16)
     message = forms.CharField(widget = forms.Textarea, max_length = 2000, label='Richiesta')
