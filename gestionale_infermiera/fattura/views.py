@@ -4,6 +4,8 @@ from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import A4
+
+from gestionale_infermiera.settings import PDF_ROOT
 from .models import Fattura
 from .models import TariffaFatt
 # Create your views here.
@@ -19,7 +21,7 @@ class ControllerFattura():
 
 
         #buffer = io.BytesIO()
-        c = canvas.Canvas('fattura.pdf')
+        c = canvas.Canvas(PDF_ROOT + 'fattura.pdf')
         c.translate(inch/1.75,inch*1.3)
     # define a large font
         c.setFont("Helvetica", 10)

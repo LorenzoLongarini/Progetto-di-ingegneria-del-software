@@ -151,3 +151,6 @@ MESSAGE_TAGS = {
     messages.WARNING: 'alert-warning',
     messages.ERROR: 'alert-danger',
 }
+
+#PDF
+PDF_ROOT = 'C:/pdf/'

@@ -11,6 +11,7 @@ from django.utils.safestring import mark_safe
  
 class AgendaAdmin(admin.ModelAdmin):
     list_display = ['nome','day', 'orario_inizio', 'orario_fine', 'note']
+    search_fields = ['nome']
     change_list_template = 'admin/agenda/change_list.html'
 
     def changelist_view(self, request, extra_context=None):

@@ -6,13 +6,14 @@ from .models import Tariffa
 
 class TariffaAdmin(admin.ModelAdmin):
     list_display = ['nome', 'prezzo', 'descrizione']
-    change_list_template = 'admin/prodotto/change_list.html'
+    change_list_template = 'admin/tariffa/change_list.html'
+    search_fields = ['nome']
 
     def changelist_view(self, request):
 
-        prodotti = Tariffa.objects.all()
+        tariffe = Tariffa.objects.all()
 
-        return super(TariffaAdmin, self).changelist_view(request, {'prodotti' : prodotti})
+        return super(TariffaAdmin, self).changelist_view(request, {'tariffe' : tariffe})
         
     
 

@@ -11,6 +11,8 @@ class FatturaAdmin(admin.ModelAdmin):
     inlines = [
         FatturaInline,
     ]
+    search_fields = ['numero']
+
     @admin.action(description='Genera file PDF')
     def generatePDF(modeladmin, request, queryset):
        # url ='templates/admin/fattura/?pks=' + ','.join(str([q.pk for q in queryset]))
