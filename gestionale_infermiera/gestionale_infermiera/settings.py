@@ -154,3 +154,5 @@ MESSAGE_TAGS = {
 
 #PDF
 PDF_ROOT = 'C:/pdf/'
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']

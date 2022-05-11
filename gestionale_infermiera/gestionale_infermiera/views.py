@@ -10,6 +10,4 @@ class ControllerHome():
     def about(request):
         return render(request, 'gestionale_infermiera/about.html' )
 
-    def help(request):
-        return render(request, 'gestionale_infermiera/about.html')
 

@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from .models import Faq
+from .models import FAQ
 # Create your views here.
 
-class ControllerFaq():
+class ControllerFAQ():
 
     def faq(request):
-        faqs = Faq.objects.all()
+        faqs = FAQ.objects.all()
         return render(request, 'faq/faq.html',{'faqs' : faqs})

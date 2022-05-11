@@ -4,6 +4,8 @@ from django import forms
 from datetime import datetime, date
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
+from gestionale_infermiera import settings
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 def validate_length3(value):
     an_integer = value
@@ -30,16 +32,19 @@ def clean_data(value):
 
 class Prenotazione(forms.Form):
 
-    nome = forms.CharField(max_length=20)
-    cognome = forms.CharField(max_length=20)
-    citta = forms.CharField(max_length=15)
-    via = forms.CharField(max_length=25)
-    num_civico = forms.CharField(widget=forms.NumberInput(attrs={'type':'number'}), validators=[validate_length3])
-    cap = forms.IntegerField(validators=[validate_length5])
-    cod_fiscale = forms.CharField(max_length=16)
-    message = forms.CharField(widget = forms.Textarea, max_length = 2000, label='Richiesta')
-    materiale = forms.BooleanField(required=False, widget=forms.CheckboxInput)
-    prescrizione = forms.BooleanField(required=False, widget=forms.CheckboxInput)
-    orario = forms.TimeField()
-    data = forms.DateField(validators=[clean_data])
-    email = forms.EmailField()
+    nome = forms.CharField(max_length=20, label='Nome:')
+    cognome = forms.CharField(max_length=20, label='Cognome:')
+    citta = forms.CharField(max_length=15, label='Città:')
+    via = forms.CharField(max_length=25, label='Via:', required=False)
+    num_civico = forms.CharField(widget=forms.NumberInput(attrs={'type':'number'}), validators=[validate_length3], label='Numero Civico:', required=False)
+    cap = forms.IntegerField(validators=[
+            MaxValueValidator(3),
+            MinValueValidator(1)
+        ], label='Cap:', required=False)
+    cod_fiscale = forms.CharField(max_length=16, label='Codice Fiscale:', required=False)
+    message = forms.CharField(widget = forms.Textarea, max_length = 2000, label='Richiesta:')
+    materiale = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo il materiale:')
+    prescrizione = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo la prescrizione:')
+    orario = forms.TimeField(widget=forms.TimeInput(attrs=dict(type='time')), label='Orario', required=False)
+    data = forms.DateField( widget=forms.DateInput(attrs=dict(type='date')), label='Data', required=False)
+    email = forms.EmailField(label='Email')

@@ -19,6 +19,7 @@ def get_absolute_url(self):
         return u'<a href="%s">%s</a>' % (url, str(self.nome) + "  " +str(self.orario_inizio) + "-"  +str(self.orario_fine) )
 
 class Prodotto(models.Model):
+
     
     nome = models.CharField(u'Nome', help_text=u'Nome',max_length=10)
     descrizione = models.TextField(u'Descrizione', help_text=u'Descrizione', blank=True, null=True)
@@ -28,6 +29,7 @@ class Prodotto(models.Model):
     def __str__(self):
         return self.nome
 
+    class Meta:
+        verbose_name = u'Prodotto'
+        verbose_name_plural = u'Prodotti' 
     
-    
-  

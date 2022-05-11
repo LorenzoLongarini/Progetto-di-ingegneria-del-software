@@ -31,6 +31,11 @@ class Fattura(models.Model):
     def __str__(self):
         return str(self.numero)
     
+    class Meta:
+        verbose_name = u'Fattura'
+        verbose_name_plural = u'Fatture' 
+
+
 class TariffaFatt(models.Model):
     
     CHOICES = [(i,i) for i in range(11)]

@@ -18,13 +18,13 @@
         <div class="container py-5">
             <div class="row align-items-center py-4">
                 <div class="col-md-6 text-center text-md-left">
-                    <h1 class="mb-4 mb-md-0 text-white">Contact Us</h1>
+                    <h1 class="mb-4 mb-md-0 text-white">Contattaci</h1>
                 </div>
                 <div class="col-md-6 text-center text-md-right">
                     <div class="d-inline-flex align-items-center">
-                        <a class="btn text-white" href="">Home</a>
+                        <a class="btn text-white" href="{% url 'home' %}">Home</a>
                         <i class="fas fa-angle-right text-white"></i>
-                        <a class="btn text-white disabled" href="">Contact Us</a>
+                        <a class="btn text-white disabled" href="{% url 'contact' %}">Contact Us</a>
                     </div>
                 </div>
             </div>
@@ -33,54 +33,136 @@
     <!-- Page Header Start -->
 
 
-    <!-- Contact Start -->
+
     <div class="container-fluid py-5">
-        <div class="container" style="max-width: 900px;">
-            <div class="row">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
-                                    <i class="fa fa-2x fa-map-marker-alt text-secondary"></i>
-                                </div>
-                                <h5 class="font-weight-medium m-0 mt-2">123 Street, New York, USA</h5>
+        
+        <div class="container">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
+                                <i class="fa fa-2x fa-map-marker-alt text-secondary"></i>
                             </div>
+                            <h5 class="font-weight-medium m-0 mt-2">Via Giovanni Verga, 42</h5>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
-                                    <i class="fa fa-2x fa-envelope-open text-secondary"></i>
-                                </div>
-                                <h5 class="font-weight-medium m-0 mt-2">info@example.com</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
+                                <i class="fa fa-2x fa-envelope-open text-secondary"></i>
                             </div>
+                            <h5 class="font-weight-medium m-0 mt-2">luana.bibini@gmail.com</h5>
                         </div>
-                        <div class="col-md-4">
-                            <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
-                                <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
-                                    <i class="fa fa-2x fa-phone-alt text-secondary"></i>
-                                </div>
-                                <h5 class="font-weight-medium m-0 mt-2">+012 345 6789</h5>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column align-items-center justify-content-center text-center mb-5">
+                            <div class="d-inline-flex align-items-center justify-content-center bg-white border border-light shadow rounded-circle mb-4" style="width: 100px; height: 100px; border-width: 15px !important;">
+                                <i class="fa fa-2x fa-phone-alt text-secondary"></i>
                             </div>
+                            <h5 class="font-weight-medium m-0 mt-2">+39 328 0541830</h5>
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="contact-form">
-                        <div id="success"></div>
-                        <form method="post">
-                            {% csrf_token %}
-                                {{ form.as_p }}
-                                
-                                <button type="submit">Submit</button>
-                            </form>
-                    </div>
+            </div>
+            <div style="display: flex;">
+                
+                <div class="col-lg-5" style = "display:flex;">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2904.337594690632!2d13.425902015424835!3d43.28625137913549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x132df33f7e73368b%3A0x979e5129edd65428!2sVia%20Giovanni%20Verga%2C%2062100%20Macerata%20MC!5e0!3m2!1sit!2sit!4v1652304361811!5m2!1sit!2sit" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-lg-7 mt-5 mt-lg-0 pl-lg-5">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.nome.errors }}
+                                {{ form.nome.label_tag }} {{ form.nome }}
+                            </div>
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.cognome.errors }}
+                                {{ form.cognome.label_tag }} {{ form.cognome }}
+                            </div>
+                        </div>
+                        <p>
+                            <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.citta.errors }}
+                                {{ form.citta.label_tag }} {{ form.citta }}
+                            </div>
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.via.errors }}
+                                {{ form.via.label_tag }} {{ form.via }}
+                            </div>
+                        </div>
+                        <p>
+                        <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.num_civico.errors }}
+                                {{ form.num_civico.label_tag }} {{ form.num_civico }}
+                            </div>
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.cap.errors }}
+                                {{ form.cap.label_tag }} {{ form.cap }}
+                            </div>
+                        </div>
+                        <p>
+                        <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.cod_fiscale.errors }}
+                                {{ form.cod_fiscale.label_tag }} {{ form.cod_fiscale }}
+                            </div>
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.email.errors }}
+                                {{ form.email.label_tag }} {{ form.email }}
+                            </div>
+                        </div>
+                        <p>
+                        <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.message.errors }}
+                                {{ form.message.label_tag }} {{ form.message }}
+                            </div>
+                        </div>
+                        <p>
+                            <div style = "display:flex; justify-content:center; gap:30px;">
+                                <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                    {{ form.data.errors }}
+                                    {{ form.data.label_tag }} {{ form.data }}
+                                </div>
+                                <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                    {{ form.orario.errors }}
+                                    {{ form.orario.label_tag }} {{ form.orario }}
+                                </div>
+                            </div>
+                        <p>
+                        <div style = "display:flex; justify-content:center; gap:30px;">
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.materiale.errors }}
+                                {{ form.materiale.label_tag }} 
+                                <div style = "display:flex; justify-content: center">
+                                {{ form.materiale }}
+                                </div>
+                            </div>
+                            <div class="fieldWrapper" style = "display: flex;flex-direction: column;">
+                                {{ form.prescrizione.errors }}
+                                {{ form.prescrizione.label_tag }} 
+                                <div style = "display:flex; justify-content: center">
+                                {{ form.prescrizione }}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <p>
+                        <p>
+                            <div style="display: flex;justify-content: center; color:#46C6CE;">
+                            <button class = "button"style = ""type="submit"><span>Invia </span></button>
+                            </div>
+                        </form>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Contact End -->
-
+    <!-- Contact-->
     {% include "gestionale_infermiera/footer.html" %}
 </body>
 

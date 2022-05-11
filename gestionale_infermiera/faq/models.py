@@ -1,6 +1,6 @@
 from django.db import models
 
-class Faq(models.Model):
+class FAQ(models.Model):
 
     nome = models.CharField(max_length=10)
     domanda = models.CharField(max_length=15)

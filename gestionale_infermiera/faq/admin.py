@@ -1,17 +1,17 @@
 from django.contrib import admin
-from .models import Faq
+from .models import FAQ
 
 
-class FaqAdmin(admin.ModelAdmin):
+class FAQAdmin(admin.ModelAdmin):
     list_display = ['nome','domanda', 'risposta']
     search_fields = ['nome']
     change_list_template = 'admin/faq/change_list.html'
 
     def changelist_view(self, request):
     
-        faqs = Faq.objects.all()
+        faqs = FAQ.objects.all()
 
-        return super(FaqAdmin, self).changelist_view(request, {'faqs' : faqs})
+        return super(FAQAdmin, self).changelist_view(request, {'faqs' : faqs})
         
-admin.site.register(Faq, FaqAdmin)
+admin.site.register(FAQ, FAQAdmin)
 
