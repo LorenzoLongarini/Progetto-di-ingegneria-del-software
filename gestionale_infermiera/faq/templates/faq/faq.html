@@ -25,36 +25,23 @@
         </div>
     </div>
 <div class="container">
-    <br />
-    <br />
-    <br />
-
-    <!--<div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        This section contains a wealth of information, related to <strong>PrepBootstrap</strong> and its store. If you cannot find an answer to your question, 
-        make sure to contact us. 
-    </div>-->
+    
+    
 
     <br />
 
     <div class="panel-group" id="accordion">
-        <div class="faqHeader">General questions</div>
-         {% for faq in faqs %}
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="{{faq}}">
-                        {{faq.domanda}}
-                    </a>
-                </h4>
-            </div>
-            <div  class="panel-collapse collapse in" id = "{{faq}}">
-                <div class="panel-body">
-                    {{faq.risposta}}
+        <div class="faqHeader" style="display:flex; justify-content:center"><h1>Frequently Asked Questions</h1></div>
+        <br />
+        <br />
+        {% for faq in faqs %}
+        <button class="accordion">{{faq.domanda}}</button>
+                <div class="panel">
+                    <p>{{faq.risposta}}</p>
                 </div>
-            </div>
-        </div>
-         {% endfor %}
+
+                {% endfor %}
+        
     </div>
 </div>
 
@@ -63,7 +50,43 @@
 
 
     <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>s
+    <a href="#" class="btn btn-lg btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 </body>
 
+
+<script>
+    var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    /* Toggle between adding and removing the "active" class,
+    to highlight the button that controls the panel */
+    this.classList.toggle("active");
+
+    /* Toggle between hiding and showing the active panel */
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+
+  var acc = document.getElementsByClassName("accordion");
+  var i;
+  
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+</script>
 </html>

@@ -30,21 +30,19 @@ def clean_data(value):
             raise forms.ValidationError("The date cannot be in the past!")
         return value
 
+
 class Prenotazione(forms.Form):
 
     nome = forms.CharField(max_length=20, label='Nome:')
     cognome = forms.CharField(max_length=20, label='Cognome:')
     citta = forms.CharField(max_length=15, label='Città:')
     via = forms.CharField(max_length=25, label='Via:', required=False)
-    num_civico = forms.CharField(widget=forms.NumberInput(attrs={'type':'number'}), validators=[validate_length3], label='Numero Civico:', required=False)
-    cap = forms.IntegerField(validators=[
-            MaxValueValidator(3),
-            MinValueValidator(1)
-        ], label='Cap:', required=False)
+    num_civico = forms.CharField(widget=forms.NumberInput(attrs={'type':'number'}), max_length=3, label='Numero Civico:', required=False)
+    cap = forms.IntegerField( label='Cap:', required=False)
     cod_fiscale = forms.CharField(max_length=16, label='Codice Fiscale:', required=False)
     message = forms.CharField(widget = forms.Textarea, max_length = 2000, label='Richiesta:')
-    materiale = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo il materiale:')
-    prescrizione = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo la prescrizione:')
+    materiale = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo il materiale necessario:')
+    prescrizione = forms.BooleanField(required=False, widget=forms.CheckboxInput, label='Possiedo la prescrizione del medico:')
     orario = forms.TimeField(widget=forms.TimeInput(attrs=dict(type='time')), label='Orario', required=False)
     data = forms.DateField( widget=forms.DateInput(attrs=dict(type='date')), label='Data', required=False)
     email = forms.EmailField(label='Email')
