@@ -19,7 +19,7 @@ class Tariffa(models.Model):
 
     nome = models.CharField(u'Nome', help_text=u'Nome',max_length=10)
     descrizione = models.TextField(u'Descrizione', help_text=u'Descrizione',max_length=30, default=None, blank=True, null=True)
-    prezzo = models.FloatField(u'Prezzo', help_text=u'Prezzo',max_length=6, validators=[validate_price])
+    prezzo = models.DecimalField(u'Prezzo', help_text=u'Prezzo', max_digits=5, validators=[validate_price], decimal_places=2)
 
     def __str__(self):
         return self.nome

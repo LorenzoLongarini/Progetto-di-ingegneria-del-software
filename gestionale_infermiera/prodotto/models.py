@@ -10,7 +10,7 @@ max = 999
 def validate_price(value):
             if value < 0 :
                 raise ValidationError(
-                    _('(value) non può essere negativo'),
+                    _('Il prezzo non può essere negativo'),
                     params={'value': value},
                 )
 
@@ -24,7 +24,7 @@ class Prodotto(models.Model):
     nome = models.CharField(u'Nome', help_text=u'Nome',max_length=10)
     descrizione = models.TextField(u'Descrizione', help_text=u'Descrizione', blank=True, null=True)
     marca = models.CharField(u'Marca', help_text=u'Marca',max_length=15, blank=True, null=True)
-    prezzo = models.FloatField(u'Prezzo', help_text=u'Prezzo', max_length=3, validators=[validate_price, MinValueValidator(min), MaxValueValidator(max)])
+    prezzo = models.DecimalField(u'Prezzo', help_text=u'Prezzo', max_digits=5, validators=[validate_price], decimal_places=2)
 
     def __str__(self):
         return self.nome

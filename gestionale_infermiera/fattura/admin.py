@@ -4,6 +4,13 @@ from fattura import views
 from .models import Fattura
 from .models import TariffaFatt
 
+
+def changelist_view(self, request):
+    
+        fatture = Fattura.objects.all()
+
+        return super(FatturaAdmin, self).changelist_view(request, {'fatture' : fatture})
+
 class FatturaInline(admin.TabularInline):
     model = TariffaFatt
 
@@ -11,6 +18,7 @@ class FatturaAdmin(admin.ModelAdmin):
     inlines = [
         FatturaInline,
     ]
+    list_display = ['numero', 'data', 'nome', 'cognome', 'nome_ditta']
     search_fields = ['numero']
 
     @admin.action(description='Genera file PDF')
