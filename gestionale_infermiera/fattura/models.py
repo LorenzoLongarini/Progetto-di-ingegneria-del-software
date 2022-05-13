@@ -19,9 +19,9 @@ class Fattura(models.Model):
     nome_ditta = models.CharField(max_length=20, default=None, blank=True, null=True)
     citta = models.CharField(max_length=15)
     via = models.CharField(max_length=25, default=None)
-    num_civico = models.IntegerField( default=None, validators=[MaxValueValidator(999), MinValueValidator(999)])
-    cap = models.BigIntegerField( default=None, validators=[MaxValueValidator(99999), MinValueValidator(99999)])
-    partita_iva = models.BigIntegerField( validators=[MaxValueValidator(99999999999), MinValueValidator(99999999999), validate_price],default=None, blank=True, null=True)
+    num_civico = models.IntegerField( default=None, validators=[validate_price, MaxValueValidator(999)])
+    cap = models.BigIntegerField( default=None, validators=[MinValueValidator(0), MaxValueValidator(99999)])
+    partita_iva = models.BigIntegerField( validators=[MinValueValidator(0), MaxValueValidator(99999999999), validate_price],default=None, blank=True, null=True)
     cod_fiscale = models.CharField(max_length=16, default=None, blank=True, null=True)
     cod_cliente = models.CharField(max_length=7, blank=True, null=True)
     #tipo_documento = models.CharField() sempre fattura
@@ -43,5 +43,5 @@ class TariffaFatt(models.Model):
     CHOICES = [(i,i) for i in range(11)]
     descrizione_prod = models.TextField(blank=True, null=True)
     quantita = models.IntegerField(choices=CHOICES, blank=True, null=True, validators=[validate_price])
-    prezzo = models.DecimalField( max_digits=5, validators=[validate_price], decimal_places=2, blank=True, null=True)
+    prezzo = models.FloatField( validators=[validate_price], blank=True, null=True)
     fatt = models.ForeignKey(Fattura, on_delete=models.CASCADE)
