@@ -41,20 +41,7 @@
 {% block content %}
   <div id="content-main">
       
-    <table>
-        <tr>
-          <th>Nome</th>
-          <th>Domanda</th>
-          <th>Risposta</th>
-        </tr>
-        {% for faq in faqs %}
-        <tr>
-          <td>{{faq.nome}}</td>
-          <td>{{faq.domanda}}</td>
-          <td>{{faq.risposta}}</td>
-        </tr>
-        {% endfor %}
-      </table>
+  
     {% block object-tools %}
         <ul class="object-tools">
           {% block object-tools-items %}

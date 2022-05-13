@@ -5,19 +5,20 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.urls import reverse
- 
+import datetime as dt
+
 class Appuntamento(models.Model):
     id = models.BigAutoField(primary_key=True)
     nome = models.CharField(u'Nome appuntamento', help_text=u'Nome appuntamento', blank=True, null=True, max_length=20)
     day = models.DateField(u'Data evento', help_text=u'Giorno evento')
-    orario_inizio = models.TimeField(u'Orario di inizio', help_text=u'Orario di inizio')
-    orario_fine = models.TimeField(u'Orario di fine', help_text=u'Orario di fine')
+    orario_inizio = models.TimeField(u'Orario di inizio', help_text=u'Orario di inizio', default=dt.time(00, 00))
+    orario_fine = models.TimeField(u'Orario di fine', help_text=u'Orario di fine', default=dt.time(00, 00))
     note = models.TextField(u'Note', help_text=u'Nome', blank=True, null=True)
  
     class Meta:
         verbose_name = u'Appuntamento'
         verbose_name_plural = u'Appuntamenti'
-
+    
     def check_overlap(self, fixed_start, fixed_end, new_start, new_end, cod):
             overlap = False
             if self.pk != cod:

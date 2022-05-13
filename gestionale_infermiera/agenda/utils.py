@@ -29,7 +29,7 @@ class EventCalendar(HTMLCalendar):
         Return a complete week as a table row.
         """
         s = ''.join(self.formatday(d, wd, events) for (d, wd) in theweek)
-        return '<tr>%s</tr>' % s
+        return '<tr class="tr">%s</tr>' % s
 
     def formatmonth(self, theyear, themonth, withyear=True):
         """

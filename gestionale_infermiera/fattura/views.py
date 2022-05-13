@@ -21,7 +21,7 @@ class ControllerFattura():
 
 
         #buffer = io.BytesIO()
-        c = canvas.Canvas(PDF_ROOT + 'fattura.pdf')
+        c = canvas.Canvas(PDF_ROOT +'fattura' +str(fattura.numero)+'.pdf')
         c.translate(inch/1.75,inch*1.3)
     # define a large font
         c.setFont("Helvetica", 10)
@@ -29,13 +29,14 @@ class ControllerFattura():
         c.setStrokeColorRGB(0,0,0)
         c.setFillColorRGB(0,0,0) # font colour
 
-        #c.drawImage(0.01*inch, 8.7*inch, width=50, height=50)
+        #c.drawImage('img/top2.jpg', 0.01*inch, 8.7*inch, width=50, height=50)
 
         intestazione = c.beginText(3.2*inch,9.2*inch)
-        intestazione.textLine('Nome Cognome')
-        intestazione.textLine('Via NomeVia, 1 - 00000 Macerata (MC)')
-        intestazione.textLine('Codice Fiscale: CCCNNN00A00A000A - P.IVA: 12345678910')
-        intestazione.textLine('Telefono: +39 3331112211')
+        intestazione.textLine('Luana Bibini')
+        intestazione.textLine('Via Giovanni Verga, 42 - 62100 Macerata (MC)')
+        intestazione.textLine('Codice Fiscale: BBNLNU66D70E783O - P.IVA: 02064010438')
+        intestazione.textLine('Telefono: +39 328 0541830')
+        intestazione.textLine('PEC: luanabibini@pec.opimacerata.it')
         c.drawText(intestazione)
 
         c.line(0*inch,8.5*inch,7.1*inch,8.5*inch) #(x1,y1,x2,y2)
@@ -44,10 +45,10 @@ class ControllerFattura():
         c.drawString(0*inch,8.2*inch, 'Destinatario:')
         c.setFont("Helvetica", 10)
         destinatario = c.beginText(1.1*inch,8.2*inch)
-        destinatario.textLine(str(fattura.nome))
-        destinatario.textLine('Via NomeVia, 1 - 00000 Macerata (MC)')
+        destinatario.textLine(str(fattura.nome)+' '+str(fattura.cognome))
+        destinatario.textLine('Via '+ str(fattura.via)+', '+ str(fattura.num_civico)+  ' - ' + str(fattura.cap)+' ' + str(fattura.citta))
         destinatario.textLine('Italia')
-        destinatario.textLine('P.IVA: 12345678910')
+        destinatario.textLine('P.IVA: '+ str(fattura.partita_iva))
         c.drawText(destinatario)
 
         c.setFont("Helvetica-Bold", 10)
@@ -55,15 +56,13 @@ class ControllerFattura():
         dati.textLine('Fattura:')
         dati.textLine('Tipo di documento: ')
         dati.textLine('Data Fattura: ')
-        dati.textLine('Data di scadenza: ')
         c.drawText(dati)
 
         c.setFont("Helvetica", 10)
         dati1 = c.beginText(6*inch,8.2*inch)
-        dati1.textLine('00')
-        dati1.textLine('00')
-        dati1.textLine('gg/mm/aaaa')
-        dati1.textLine('gg/mm/aaaa')
+        dati1.textLine(str(fattura.numero))
+        dati1.textLine('Fattura')
+        dati1.textLine(str(fattura.data))
         c.drawText(dati1)
 
         c.line(0*inch,7.62*inch,7.1*inch,7.62*inch) #(x1,y1,x2,y2)
@@ -71,8 +70,8 @@ class ControllerFattura():
         c.drawString(0*inch,7.48*inch, 'Descrizione pagamento:')
         c.drawString(4*inch,7.48*inch, 'Banca d\'appoggio:')
         c.setFont("Helvetica", 10)
-        c.drawString(1.7*inch,7.48*inch, 'pagamento')
-        c.drawString(5.3*inch+2,7.48*inch, 'banca')
+        c.drawString(1.7*inch,7.48*inch, str(fattura.descrizione_pag))
+        c.drawString(5.3*inch+2,7.48*inch, str(fattura.banca))
         c.line(0*inch,7.42*inch,7.1*inch,7.42*inch) #(x1,y1,x2,y2)
 
         c.setFillColorRGB(0,0,0) # font colour
@@ -111,7 +110,7 @@ class ControllerFattura():
         linea_contr=linea_impon-row_gap
         c.drawRightString(5.2*inch,linea_contr*inch,'Contributi (INPS) 4%') 
         c.drawRightString(7*inch,linea_contr*inch,str(contributi)) # contributi
-        iva=round(0 * total+contributi,2)
+        iva=round(0 )
         linea_iva=linea_contr-row_gap
         c.drawRightString(5.2*inch,linea_iva*inch,' IVA 0% '+'di ' +str(total+contributi)+ ' (art.10 n.18 DPR 633/1972)') # tax 
         c.drawRightString(7*inch,linea_iva*inch,str(iva)) # iva 
@@ -125,6 +124,7 @@ class ControllerFattura():
         c.drawRightString(5.2*inch,linea_bollo*inch,'Fattura soggetta a bollo') 
         c.drawRightString(7*inch,linea_bollo*inch,'2.00')
         linea=linea_bollo-0.1
+        total_final=round(total_final+2,2)
         c.line(3.5*inch,linea*inch,7*inch,linea*inch)
         linea_pag=linea-row_gap
         c.setFont("Helvetica-Bold", 11)

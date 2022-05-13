@@ -40,23 +40,7 @@
 
 {% block content %}
   <div id="content-main">
-         
-    <table>
-        <tr>
-          <th>Nome</th>
-          <th>Marca</th>
-          <th>Prezzo</th>
-          <th>Descrizione</th>
-        </tr>
-        {% for prodotto in prodotti %}
-        <tr>
-          <td>{{prodotto.nome}}</td>
-          <td>{{prodotto.marca}}</td>
-          <td>{{prodotto.prezzo}}</td>
-          <td>{{prodotto.descrizione}}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    
     {% block object-tools %}
         <ul class="object-tools">
           {% block object-tools-items %}
@@ -104,4 +88,6 @@
       </form>
     </div>
   </div>
+
+  
 {% endblock %}
