@@ -21,7 +21,7 @@ class Appuntamento(models.Model):
     
     def check_overlap(self, fixed_start, fixed_end, new_start, new_end, cod):
             overlap = False
-            if self.pk != cod:
+            if self.id != cod:
                 if new_start == fixed_end or new_end == fixed_start:    #edge case
                     overlap = False
                 elif (new_start >= fixed_start and new_start <= fixed_end) or (new_end >= fixed_start and new_end <= fixed_end): #innner limits
