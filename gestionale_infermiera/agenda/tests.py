@@ -1,8 +1,5 @@
-from asyncio import events
-from calendar import weekday
 from django.test import TestCase
 from agenda.models import Appuntamento
-from agenda.utils import EventCalendar
 
 # Create your tests here.
 
