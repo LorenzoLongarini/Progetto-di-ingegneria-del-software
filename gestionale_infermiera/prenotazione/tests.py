@@ -13,3 +13,5 @@ class PrenotazioneTestCase(TestCase):
         prenotazione = Prenotazione.objects.get(id=1)
         field_label = prenotazione._meta.get_field('nome').verbose_name
         self.assertEqual(field_label, 'nome')
+
+
