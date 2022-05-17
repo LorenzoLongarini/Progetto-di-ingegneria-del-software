@@ -14,13 +14,14 @@ class AppuntamentoTestCase(TestCase):
         field_label = appuntamento._meta.get_field('nome').verbose_name
         self.assertEqual(field_label, 'Nome appuntamento')
 
-    #Fail
+    #FAIL
     def test_check_overlap(self):
         assert(Appuntamento.check_overlap(self, '18:00', '20:00', '14:00', '15:00',2))
 
-    #Fail
+    #FAIL
     def test_clean(self):
-        appuntamento = Appuntamento.objects.create(id = 3, nome = "", day = "2022-05-31", orario_inizio = "18:00", orario_fine = "15:00", note = "")
+        appuntamento = Appuntamento.objects.create(id = 3, nome = "", day = "2022-05-31", orario_inizio = "18:00",
+                                                     orario_fine = "15:00", note = "")
         assert(Appuntamento.clean(appuntamento))
 
     def test_get_absolute_url(self):

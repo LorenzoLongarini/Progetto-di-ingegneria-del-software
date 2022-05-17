@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from gestionale_infermiera import settings
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-def validate_length3(value):
+"""def validate_length3(value):
     an_integer = value
     a_string = str(an_integer)
     length = len(a_string)
@@ -23,11 +23,11 @@ def validate_length5(value):
     if length > 5:
         raise ValidationError(
             _('Non è possibile inserire più di 5 caratteri')
-        )
+        )"""
 
 def clean_data(value):
-        if value < date.today():
-            raise forms.ValidationError("The date cannot be in the past!")
+        if str(value) < str(date.today()):
+            raise forms.ValidationError("La data non può precedere la data odierna")
         return value
 
 

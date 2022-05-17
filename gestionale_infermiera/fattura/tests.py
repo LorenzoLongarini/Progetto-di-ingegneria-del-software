@@ -14,7 +14,7 @@ class FatturaTestCase(TestCase):
                                data = "2022-05-31", descrizione_pag = "descrizione", banca = "IT00000123")
         TariffaFatt.objects.create(descrizione_prod="descrizione1", quantita=3, prezzo=10.50, fatt=Fattura.objects.get(id=1))
 
-    #Fail
+    #FAIL
     def test_cod_cliente_label(self):
         fattura = Fattura.objects.get(id=1)
         field_label = fattura._meta.get_field('cod_cliente').verbose_name
@@ -25,11 +25,12 @@ class FatturaTestCase(TestCase):
         field_label = fatt_prod._meta.get_field('quantita').verbose_name
         self.assertEqual(field_label, 'Quantità')
 
-    def test_num_civico(self):
+    def test_cod_fiscale(self):
         fattura = Fattura.objects.get(id=1)
         max_length = fattura._meta.get_field('cod_fiscale').max_length
         self.assertEqual(max_length, 16)
 
-    #Fail
     def test_validate_price(self):
-        assert(models.validate_price(-3))
+        fattura = Fattura.objects.get(id=1)
+        prezzo = fattura.prezzo
+        assert(models.validate_price(prezzo),True)

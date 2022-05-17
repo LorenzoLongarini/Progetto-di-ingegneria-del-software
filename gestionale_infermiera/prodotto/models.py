@@ -4,8 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.urls import reverse
 
-min = 0
-max = 999
 
 def validate_price(value):
             if value < 0 :
@@ -14,9 +12,6 @@ def validate_price(value):
                     params={'value': value},
                 )
 
-def get_absolute_url(self):
-        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
-        return u'<a href="%s">%s</a>' % (url, str(self.nome) + "  " +str(self.orario_inizio) + "-"  +str(self.orario_fine) )
 
 class Prodotto(models.Model):
 
@@ -28,6 +23,10 @@ class Prodotto(models.Model):
 
     def __str__(self):
         return self.nome
+
+    def get_absolute_url(self):
+        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
+        return u'<a href="%s">%s</a>' % (url, str(self.nome) )
 
     class Meta:
         verbose_name = u'Prodotto'

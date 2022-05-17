@@ -7,7 +7,7 @@ from django.urls import reverse
 def validate_price(value):
             if value < 0 :
                 raise ValidationError(
-                    _('(value) non può essere negativo'),
+                    _('Questo valore non può essere negativo'),
                     params={'value': value},
                 )
 
@@ -18,8 +18,12 @@ def get_absolute_url(self):
 class Tariffa(models.Model):
 
     nome = models.CharField(u'Nome', help_text=u'Nome',max_length=10)
-    descrizione = models.TextField(u'Descrizione', help_text=u'Descrizione',max_length=30, default=None, blank=True, null=True)
+    descrizione = models.TextField(u'Descrizione', help_text=u'Descrizione',max_length=300, default=None, blank=True, null=True)
     prezzo = models.DecimalField(u'Prezzo', help_text=u'Prezzo', max_digits=5, validators=[validate_price], decimal_places=2)
+
+    def get_absolute_url(self):
+        url = reverse('admin:%s_%s_change' % (self._meta.app_label, self._meta.model_name), args=[self.id])
+        return u'<a href="%s">%s</a>' % (url, str(self.nome)  )
 
     def __str__(self):
         return self.nome
